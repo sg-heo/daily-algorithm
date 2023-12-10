@@ -8,31 +8,33 @@
     function solution(arr) {
         let answer = Number.MIN_SAFE_INTEGER;
         let n = arr.length;
-        let sum1 = sum2 = 0;
+        let row = 0;
+        let col = 0;
+        let backslash = 0;
+        let slash = 0;
         let i, j;
 
         for (i = 0; i < n; i++) {
             for (j = 0; j < n; j++) {
-                sum1 += arr[i][j];
-                sum2 += arr[j][i];
-                if (answer < sum1) {
-                    answer = sum1;
-                }
-                if (answer < sum2) {
-                    answer = sum2;
-                }
+                row += arr[i][j];
+                col += arr[j][i];
             }
-            sum1 = sum2 = 0;
+            if (answer < row) {
+                answer = row;
+            }
+            if (answer < col) {
+                answer = col;
+            }
+            row = col = 0;
+
+            backslash += arr[i][i];
+            slash += arr[i][4 - i];
         }
-        for (i = 0; i < n; i++) {
-            sum1 += arr[i][i];
-            sum2 += arr[i][4 - i];
+        if (answer < backslash) {
+            answer = backslash;
         }
-        if (answer < sum1) {
-            answer = sum1;
-        }
-        if (answer < sum2) {
-            answer = sum2;
+        if (answer < slash) {
+            answer = slash;
         }
         return answer;
     }
