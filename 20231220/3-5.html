@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+<body>
+<script>
+    function solution(s){
+        let answer="";
+        let cnt=0;
+        let str = s.split('');
+        let tmpr = str[0];
+
+        for (let i=0; i < str.length; i++){
+            //비교 문자 저장
+            tmpr = str[i];
+            // 이전과 같다 == 반복, 같지않다 새로운 문자 시작
+            if (str[i] !== str[i-1]) {
+                // 현재 문자열과 저장된 문자가 같다 == 반복, 같지않다 반복 종료
+                for (let j = i; str[j] === tmpr && j < str.length; j++){
+                    console.log(str[j]);
+                    cnt++;
+                }
+
+                // 저장했던 문자를 문자열에 추가
+                answer += tmpr;
+                //반복횟수가 1이 아닌경우 반복횟수 추가
+                if(cnt !== 1){
+                    answer += cnt;
+                }
+                cnt= 0;
+            }
+
+        }
+        return answer;
+    }
+
+    let str="KKHSSSSSSSE";
+    console.log(solution(str));
+</script>
+</body>
+</html>
